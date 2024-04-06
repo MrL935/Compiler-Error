@@ -35,9 +35,8 @@ training_data = [
 
 def extract_features(sentence):
     words = word_tokenize(sentence.lower())
-    # Replace with your feature extraction logic based on NLTK or other methods
     features = {}
-    vocabulary = set(  # Replace with your vocabulary if you have a predefined list
+    vocabulary = set(
       ["what", "is", "your", "name", "company", "policies", "PTO", "time", "clock",
        "in", "submit", "leave", "request", "portal", "health", "insurance", "options"]
     )
@@ -53,7 +52,6 @@ def get_chatbot_response(user_input):
     if greetings_check(preprocessed_user_input):
         return "Hi there"
     
-    # Feature extraction (replace with your logic)
     features = extract_features(preprocessed_user_input)  # Replace with feature extraction function
     classifier = NaiveBayesClassifier()
   # Classify user input using the trained classifier
@@ -63,7 +61,7 @@ def get_chatbot_response(user_input):
         print(f"Error during classification: {e}")
         return "Sorry, I am having some trouble understanding you. Can you rephrase your question?"
 
-  # Check classifier confidence (optional)
+  # Check classifier confidence
     if classifier.classify_prob(features)[response] < 0.7:
         return "Sorry, I don't understand. Can you rephrase that?"
     else:
